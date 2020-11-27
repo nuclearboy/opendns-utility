@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebDriverHelper {
 	private static final boolean HEADLESS = true;
-	//TODO3 the selenium webdriver for chrome is in folder lib/chorme/driver. set the path to the absolute path of the driver.	
+	//TODO4 the selenium webdriver for chrome is in folder lib/chorme/driver. set the path to the absolute path of the driver.	
 	private static final String CHROME_DRIVER_DIRECTORY = "/workspace/ws-dwiki-boot/selenium-chrome/lib/chrome-driver";
 
 	protected WebDriver driver;

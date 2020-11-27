@@ -22,8 +22,6 @@ public class OpendsnRestController {
 
 	@Autowired
 	Environment env;
-	@Value("${headless.model}")
-	boolean headless;
 
 	@Value("${youtube.domains}")
 	List<String> youtubeDomains;
