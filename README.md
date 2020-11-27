@@ -23,11 +23,11 @@ After making changes, go do the selinum-web folder and run:
 * mvn spring-boot:run
 
 # Sample Usage (In order to save typing with URL, all operations are for both GET and POST
-1. curl localhost:9090/list
-2. curl localhost:9090/block/chesskid.com
-3. curl localhost:9090/unblock/chesskid.com
-4. curl localhost:9090/block/youtube    --> here youtube is defined as a group of domains in application.properties
-5. curl localhost:9090/clear
+*  curl localhost:9090/list
+*  curl localhost:9090/block/chesskid.com
+*  curl localhost:9090/unblock/chesskid.com
+*  curl localhost:9090/block/youtube    --> here youtube is defined as a group of domains in application.properties
+*  curl localhost:9090/clear
 
 # Other Usage
 Use cron job to block youtube during daytime (if you have small school age children) and unblock youtube after school over
