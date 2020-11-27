@@ -8,7 +8,7 @@ The following functions are suported.
 3) unblock: unblock a domain of a domain group
 4) clear: unblock all existing blocked domains
 
-# Prerequisit
+# Prerequisite
 Maven, Spring Tools Suite (STS), opendns account, Chrome browser
 
 # Setup/Configurations
