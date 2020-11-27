@@ -19,18 +19,22 @@ https://dashboard.opendns.com/settings/1234567/content_filtering. Here the netwo
 
 # Start the application
 After making changes, go do the selinum-web folder and run:  
-mvn clean package -Dmaven.test.skip
-mvn spring-boot:run
+* mvn clean package -Dmaven.test.skip
+* mvn spring-boot:run
 
 # Sample Usage (In order to save typing with URL, all operations are for both GET and POST
-curl localhost:9090/list
-curl localhost:9090/block/chesskid.com
-curl localhost:9090/unblock/chesskid.com
-curl localhost:9090/block/youtube    --> here youtube is defined as a group of domains in application.properties
-curl clear
+1. curl localhost:9090/list
+2. curl localhost:9090/block/chesskid.com
+3. curl localhost:9090/unblock/chesskid.com
+4. curl localhost:9090/block/youtube    --> here youtube is defined as a group of domains in application.properties
+5. curl localhost:9090/clear
 
 # Other Usage
 Use cron job to block youtube during daytime (if you have small school age children) and unblock youtube after school over
-
+The following cron jobs unblock youtube at 430pm and block youtube at 8am, Monday ~ Friday
+~~~
+ 30 16 * * * curl localhost:9090/unblock/youtube
+ 0 8 * * 1-5 curl localhost:9090/block/youtube
+~~~
 
 
