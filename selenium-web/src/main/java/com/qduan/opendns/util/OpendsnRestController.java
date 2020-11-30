@@ -26,16 +26,21 @@ public class OpendsnRestController {
 	@Value("${youtube.domains}")
 	List<String> youtubeDomains;
 
-	@Value("${opendns.username}")
+	@Value("${opendns_username}")
 	String username;
 
-	@Value("${opendns.password}")
+	@Value("${opendns_password}")
 	String password;
 
-	@Value("${opendns.setings.network.id}")
+	@Value("${opendns_setings_network_id}")
 	String setttingsId;
 
-	@RequestMapping("/list")
+	@RequestMapping("/")
+	public ResponseEntity<String> welcome() {
+		return ResponseEntity.ok("welcome");
+	}
+
+	@RequestMapping("/list") 
 	public ResponseEntity<String> getAll() {
 		OpendnsTask task = new OpendnsTask(username, password, setttingsId);
 		task.login();
@@ -56,7 +61,7 @@ public class OpendsnRestController {
 		/*- if domain name xxx doesn't contain '.', then it treated as a group name defined by
 		 *  domain.xxx=domain1,domain2,domain3
 		 */
-		if (domainName.indexOf(".") == -1) {
+		if (domainName.indexOf(".") == -1 || domainName.indexOf(",") != -1) {
 			List<String> domainNames = this.getDomaingroup(domainName);
 			if (domainNames == null) {
 				msg = ("Invalid domain name or group name specified: " + domainName);
@@ -83,7 +88,7 @@ public class OpendsnRestController {
 		/*- if domain name xxx doesn't contain '.', then it treated as a group name defined by
 		 *  xxx.domains=domain1,domain2,domain3
 		 */
-		if (domainName.indexOf(".") == -1) {
+		if (domainName.indexOf(".") == -1 || domainName.indexOf(",") != -1) {
 			List<String> domainNames = this.getDomaingroup(domainName);
 			if (domainNames == null) {
 				msg = ("Invalid domain name or group name specified: " + domainName);
@@ -116,11 +121,15 @@ public class OpendsnRestController {
 	 * @return
 	 */
 	protected List<String> getDomaingroup(String domainGroup) {
-		String domainNames = env.getProperty(domainGroup + ".domains");
-		if (domainNames == null || domainNames.length() == 0) {
-			return null;
+        String domainNames = domainGroup; //multiple actual domain names
+        //youtube
+		if (domainGroup.indexOf(".") == -1) {
+			domainNames = env.getProperty(domainGroup + ".domains");
+			if (domainNames == null || domainNames.length() == 0) {
+				return null;
+			}
 		}
+
 		return Arrays.asList(domainNames.split(","));
 	}
-
 }
